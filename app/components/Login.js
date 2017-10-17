@@ -38,11 +38,9 @@ export default class Login extends Component {
                         <FormControl autoFocus type="password" value={this.state.password} onChange={this.handleChange} />
                     </FormGroup>
                     <Button
-                        bsSize="large"
-                        bsStyle="primary"
+                        bsStyle="primary" bsSize="large"
                         disabled={!this.validateForm()}
                         type="submit"
-                        block
                     >
                         Login
                     </Button>
