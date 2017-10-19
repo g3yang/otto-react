@@ -3,10 +3,10 @@ export default class Auth{
         localStorage.setItem('token',token);
     }
 
-    static isUserAuthenticated(){
+    static isLoggedIn(){
         return localStorage.getItem('token')!==null;
     }
-    
+
     static getToken(){
         return localStorage.getItem('token');
     }

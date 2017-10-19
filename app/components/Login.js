@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {Button, FormGroup, FormControl, ControlLabel, Alert} from 'react-bootstrap';
-import {API} from '../config';
+import {ROOT_URL} from '../config';
 import Auth from '../services/Auth';
 
 export default class Login extends Component {
@@ -15,7 +15,7 @@ export default class Login extends Component {
 
     login(){
 
-        fetch(`${API}/token`, {
+        fetch(`${ROOT_URL}/token`, {
             method:'POST',
             headers:{
                 "Content-Type":"application/json"
@@ -28,7 +28,7 @@ export default class Login extends Component {
            if(res.ok){
                res.json().then(obj=>{
                     Auth.setToken(obj.token);
-                    this.context.router.history.replace('/contact');                    
+                    this.context.router.history.replace('/todos');                    
                });
            }else{
                res.json().then(obj=>{
