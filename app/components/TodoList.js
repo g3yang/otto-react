@@ -1,5 +1,14 @@
 import React, {Component, PropTypes} from 'react';
+import {Button, FormGroup, FormControl, ControlLabel, Alert} from 'react-bootstrap';
 import API from '../services/API';
+
+
+const List = ({todos})=>{
+    const list = todos.map((todo)=>{
+        return (<li>{todo.description}</li>);
+    });
+    return (<ul>{list}</ul>);
+};
 
 
 export default class TodoList extends Component{
@@ -7,9 +16,7 @@ export default class TodoList extends Component{
         super(props);
         this.state = {
             todos: [],
-            todo: {
-                description:''
-            }
+            todo: 'DIU'            
         };
     }
 
@@ -19,7 +26,9 @@ export default class TodoList extends Component{
                 return res.json();
             }
         }).then(data=>{
-            console.log(data);
+            this.setState({
+                todos:data
+            });
         })
         .catch(err=>{
             console.log(err);
@@ -31,6 +40,7 @@ export default class TodoList extends Component{
     }
 
     handleChange = event => {
+        console.log(event.target.id);
         this.setState({
             [event.target.id]:event.target.value
         });
@@ -41,10 +51,15 @@ export default class TodoList extends Component{
         return (
             <div>
                 <form className="Panel" onSubmit={this.onSubmit}>
-                    <input value = {this.state.todo.description}  onChange={this.handleChange} />
-                    <span/>
+                    <FormGroup controlId ="todo" bsSize="large">
+                        <ControlLabel> New Task </ControlLabel>
+                        <FormControl autoFocus type="text" value={this.state.todo}
+                         onChange={this.handleChange} />
+                    </FormGroup>
+                    
                     <button> Add </button>
                 </form>
+                <List todos = {this.state.todos} />
             </div>
         );
     }
