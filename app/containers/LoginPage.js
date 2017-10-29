@@ -3,7 +3,7 @@ import {Button, FormGroup, FormControl, ControlLabel, Alert} from 'react-bootstr
 import {ROOT_URL} from '../config';
 import Auth from '../services/Auth';
 
-export default class Login extends Component {
+export default class LoginPage extends Component {
     constructor(props,context){
         super(props,context);
         this.state = {
