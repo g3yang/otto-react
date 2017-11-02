@@ -23,6 +23,10 @@ const todos = (state=[],action) =>{
             });
         case types.LOAD_TODOS_SUCCESS:
             return action.todos;
+        case types.DEL_TODO_SUCCESS:
+            let index=state.findIndex(todo=>todo._id == action.id);
+            state.splice(index,1);
+            return state;
         default:
             return state;
     }

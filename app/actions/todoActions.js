@@ -4,9 +4,30 @@ import * as types from './actionTypes';
 
 export function loadTodos(){
     return function(dispatch){
-        API.getTodos().then((todos)=>{
-            dispatch(loadTodosSuccess(todos));
-        })
+        API.getTodos().then((res)=>{
+            if(res.ok){
+                res.json().then(todos=>{
+                    dispatch(loadTodosSuccess(todos));    
+                })
+            }
+        });
+    }
+}
+
+export function deleteTodoSuccess(id){
+    return {
+        type: types.DEL_TODO_SUCCESS,
+        id
+    }
+}
+
+export function deleteTodo(id){
+    return function(dispatch){
+        API.deleteTodo(id).then((res)=>{
+            if(res.ok){
+                dispatch(deleteTodoSuccess(id));
+            }
+        });
     }
 }
 

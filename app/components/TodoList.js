@@ -1,8 +1,10 @@
 import React from 'react';
+import {ListGroup} from 'react-bootstrap';
 import Todo from './Todo';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actions from '../actions/todoActions';
+
 
 class TodoList extends React.Component{
     constructor(props){
@@ -18,24 +20,17 @@ class TodoList extends React.Component{
         <ul>
          {
             this.props.todos.map(todo=>(
-                <Todo key = {todo.id} description={todo.description} completed={todo.completed} onClick={()=>onTodoClick(todo.id)} />
+                <Todo key = {todo.id} description={todo.description}
+                 completed={todo.completed} 
+                 onToggle={()=>onTodoClick(todo._id)} 
+                 onDelete={()=>this.props.actions.deleteTodo(todo._id)}/>
             ))
          }
         </ul>
        )
     }
 }
-/**
-const TodoList = ({todos, onTodoClick})=>(
-    <ul>
-        {
-            todos.map(todo=>(
-                <Todo key = {todo.id} description={todo.description} completed={todo.completed} onClick={()=>onTodoClick(todo.id)} />
-            ))
-        }
-    </ul>
-);
-*/
+
 
 const mapStateToProps = (state) => {
     return {

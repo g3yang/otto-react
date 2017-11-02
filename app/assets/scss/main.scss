@@ -1,9 +1,24 @@
 @import 'login';
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
 
 $color: #262828;
 
 body {
   color: $color;
+}
+
+.ul {
+  list-style: none  
+}
+
+.done {
+  text-decoration: line-through;
+  color:red;
+}
+
+.undone {
+  color: #61DAFB;
 }
 
 @media all and (min-width: 480px) {

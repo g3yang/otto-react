@@ -14,4 +14,14 @@ export default class API {
         });
     }
 
+    static deleteTodo(id){
+        return fetch(`${ROOT_URL}/todos/${id}`,{
+            method:'DELETE',
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":`bearer ${Auth.getToken()}`                
+            }
+        });
+    }
+
 }
