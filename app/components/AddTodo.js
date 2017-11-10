@@ -1,42 +1,35 @@
 import React from 'React';
 import {Button, FormGroup, FormControl, ControlLabel, Alert} from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {addTodo} from '../actions/todoActions';
 
+let AddTodo = ({dispatch}) => {
+    let input;
+    return (
+        <div>
+            <form onSubmit = {e=>{
+                e.preventDefault()
+                if(!input.value.trim()){
+                    return;
+                }
+                dispatch(addTodo(input.value));
+                input.value = ''
+            }}>
 
-export default class AddTodo extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            newTask:{
-                description:''
-            }
-        };
-    }
+                <input ref={node=>{
+                    input = node
+                }}/>
 
-    handleSubmit = event => {
-        event.preventDefault();
-    }
-
-    
-    
-    changeNewTask = event => {
-        let newTask = this.state.newTask;
-        newTask.description = event.target.value;
-        this.setState({
-            newTask
-        });
-    }
-
-    render(){
-        return (
-            <form className="Panel" onSubmit={this.onSubmit}>
-                <FormGroup controlId ="todo" bsSize="large">
-                    <ControlLabel> New Task </ControlLabel>
-                    <FormControl autoFocus type="text" value={this.state.newTask.description}
-                    onChange={this.handleChange} />
-                </FormGroup>
-                <button> Add </button>
+                <button type ="submit">
+                    Add Todo
+                </button>
             </form>
-        )
+        </div>
 
-    }
+    )
+
 }
+
+AddTodo = connect()(AddTodo)
+
+export default AddTodo;

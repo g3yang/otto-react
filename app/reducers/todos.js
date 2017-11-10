@@ -1,15 +1,11 @@
 import * as types from '../actions/actionTypes';
 
-
 const todos = (state=[],action) =>{
     switch (action.type){
-        case types.ADD_TODO:
+        case types.ADD_TODO_SUCCESS:
             return [
                 ...state,
-                {
-                    description: action.description,
-                    completed: false
-                }
+               action.newTodo
             ];
         case types.TOGGLE_TODO:
             return state.map(todo=>{
@@ -24,9 +20,7 @@ const todos = (state=[],action) =>{
         case types.LOAD_TODOS_SUCCESS:
             return action.todos;
         case types.DEL_TODO_SUCCESS:
-            let index=state.findIndex(todo=>todo._id == action.id);
-            state.splice(index,1);
-            return state;
+            return state.filter(todo=>todo._id !== action.id);
         default:
             return state;
     }

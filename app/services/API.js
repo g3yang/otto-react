@@ -24,4 +24,16 @@ export default class API {
         });
     }
 
+    static addTodo(description){
+        return fetch(`${ROOT_URL}/todos`,{
+            method:'POST',
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":`bearer ${Auth.getToken()}`                
+            },
+            body:JSON.stringify({
+                description
+            })
+        });
+    }
 }

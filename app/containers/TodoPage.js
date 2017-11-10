@@ -29,7 +29,8 @@ export default class TodoPage extends Component{
     render(){
         return (
             <div> 
-                <TodoList todos = {this.state.todos} clickFunc={()=>{}} />
+                <AddTodo />
+                <TodoList />
             </div>
         )
     }

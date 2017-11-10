@@ -1,6 +1,7 @@
 export const LOAD_TODOS_SUCCESS = 'LOAD_TODOS_SUCCESS';
 export const LOAD_TODOS_ERROR = 'LOAD_TODOS_ERROR';
 export const ADD_TODO = 'ADD_TODO';
+export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS';
 export const DEL_TODO_SUCCESS='DEL_TODO_SUCCESS';
 export const TOGGLE_TODO='TOGGLE_TODO';
 

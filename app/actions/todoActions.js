@@ -39,9 +39,21 @@ export function loadTodosSuccess(todos){
     }
 }
 
+export function addTodo(description){
+    return function(dispatch){
+        API.addTodo(description).then((res)=>{
+            if(res.ok){
+                res.json().then((newTodo)=>{
+                    dispatch(addTodoSuccess(newTodo));
+                })
+            }
+        })
+    }
+}
+
 export const addTodoSuccess = newTodo =>{
     return {
-        type: types.ADD_TODO,
+        type: types.ADD_TODO_SUCCESS,
         newTodo
     }
 }

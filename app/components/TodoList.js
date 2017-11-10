@@ -3,7 +3,7 @@ import {ListGroup} from 'react-bootstrap';
 import Todo from './Todo';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import * as actions from '../actions/todoActions';
+import {loadTodos,deleteTodo} from '../actions/todoActions';
 
 
 class TodoList extends React.Component{
@@ -12,7 +12,7 @@ class TodoList extends React.Component{
     }
 
     componentWillMount(){
-        this.props.actions.loadTodos();
+        this.props.loadTodos();
     }
 
     render(){
@@ -23,7 +23,7 @@ class TodoList extends React.Component{
                 <Todo key = {todo.id} description={todo.description}
                  completed={todo.completed} 
                  onToggle={()=>onTodoClick(todo._id)} 
-                 onDelete={()=>this.props.actions.deleteTodo(todo._id)}/>
+                 onDelete={()=>this.props.deleteTodo(todo._id)}/>
             ))
          }
         </ul>
@@ -40,7 +40,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators(actions, dispatch)
+        loadTodos: ()=> dispatch(loadTodos()),
+        deleteTodo: (id) => dispatch(deleteTodo(id))
     }
 };
 
